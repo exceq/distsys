@@ -8,4 +8,4 @@ ___
 
 ___
 ### Прочее
-Swagger на [localhost:8081/swagger-ui/](localhost:8081/swagger-ui/)
+Swagger на [http://localhost:8081/swagger-ui/](http://localhost:8081/swagger-ui/)
