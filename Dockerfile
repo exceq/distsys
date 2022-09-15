@@ -6,4 +6,4 @@ RUN mvn -f /home/app/pom.xml package -DskipTests
 FROM eclipse-temurin:17-jre-alpine
 COPY --from=builder /home/app/target/distsys.jar /usr/local/lib/distsys.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/usr/local/lib/distsys.jar"]
+ENTRYPOINT ["java","-jar","-Dspring.profiles.active=dev-docker","/usr/local/lib/distsys.jar"]
