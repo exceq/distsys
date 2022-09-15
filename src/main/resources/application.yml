@@ -5,7 +5,8 @@ spring.mvc.pathmatch.matching-strategy: ant_path_matcher
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:15432/mydb
+    url: jdbc:postgresql://db:5432/mydb # для запуска в докере
+#    url: jdbc:postgresql://localhost:15432/mydb # для запуска локально
     username: myuser
     password: mypassword
     driver-class-name: org.postgresql.Driver
