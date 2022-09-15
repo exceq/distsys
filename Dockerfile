@@ -4,6 +4,6 @@ COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml package -DskipTests
 
 FROM eclipse-temurin:17-jre-alpine
-COPY --from=builder /home/app/target/distsys-0.0.1-SNAPSHOT.jar /usr/local/lib/distsys.jar
+COPY --from=builder /home/app/target/distsys.jar /usr/local/lib/distsys.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/usr/local/lib/distsys.jar"]
