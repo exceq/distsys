@@ -1,14 +1,12 @@
--- auto-generated definition
-create table student
+create table link
 (
-    id         bigserial
-        constraint student_pk
+    id bigserial
+        constraint link_pk
             primary key,
-    name       varchar(255) not null,
-    course     integer,
-    group_name varchar(255)
+    url varchar(255) not null,
+    status varchar,
+    created date
 );
 
-alter table student
-    owner to myuser;
+alter table link owner to myuser;
 
