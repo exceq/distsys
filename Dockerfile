@@ -10,4 +10,6 @@ RUN mvn package -DskipTests
 FROM eclipse-temurin:17-jre-alpine
 COPY --from=builder /usr/app/target/distsys.jar /usr/local/lib/distsys.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","-Dspring.profiles.active=dev-docker","/usr/local/lib/distsys.jar"]
+ARG SPRING_PROFILE
+ENV SPRING_PROFILE_ENV=$SPRING_PROFILE
+ENTRYPOINT ["java","-jar","-Dspring.profiles.active=${SPRING_PROFILE_ENV}","/usr/local/lib/distsys.jar"]
