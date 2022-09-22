@@ -25,4 +25,9 @@ public class Link {
 
     @Column
     String status;
+
+    @PrePersist
+    void prePersist() {
+        created = LocalDateTime.now();
+    }
 }

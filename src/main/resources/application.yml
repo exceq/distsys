@@ -9,3 +9,9 @@ spring:
     username: myuser
     password: mypassword
     driver-class-name: org.postgresql.Driver
+
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: myuser
+    password: mypass
