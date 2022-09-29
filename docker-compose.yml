@@ -27,15 +27,16 @@ services:
       - rabbitmq
     build: C:\Users\mrmis\PycharmProjects\python-mq-consumer
     restart: on-failure
+    env_file:
+      - ".env"
 
   rabbitmq:
-    hostname: rabbitmq
+    hostname: $RABBIT_HOSTNAME
     image: rabbitmq:management
     ports:
       - "15672:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: myuser
-      RABBITMQ_DEFAULT_PASS: mypass
+    env_file:
+      - ".env"
     healthcheck:
       test: rabbitmq-diagnostics -q ping
       interval: 30s
