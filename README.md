@@ -4,7 +4,37 @@
 
 1. Сборка `docker build -t myapp .`
 2. Запуск контейнера `docker run -p 8081:8080 --rm -it myapp:latest`
+___
 
+### Практика 2. Взаимодействие контейнеров
+1. Добавлен контейнер `PostgreSQL`
+2. Методы для сохранения в базу:
+- `POST /links` — сохраняет ссылку в БД и возвращает ее id
+- `GET /links/{id}` — отдает ссылку из БД по id
+___
+
+### Практика 3. Работа с RabbitMQ
+1. Добавлен контейнер с `RabbitMQ`
+2. Добавлен метод изенения ссылки по id
+- `PUT /links/{id}` — обновляет ссылку в БД по id
+3. Создан отдельный проект-consumer, получающий ссылки по очереди [(ссылка на проект)](https://github.com/exceq/python-rabbitmq-consumer)
+и сохраняющий статус ответа.
+___
+
+### Практика 4. Балансировка нагрузки через nginx
+1. Добавлен контейнер с `nginx`
+2. Деплоится несколько реплик контейнера `web`
+3. nginx балансирует нагрузку на реплики через upstream
+___
+
+### Практика 5. Кэширование в Redis
+
+#### Задание
+- Добавить контейнер с `Redis`
+- Добавить в коде консьюмера использование `Redis` в качестве кэша для ответов от внешних сервисов
 ___
 ### Прочее
-Swagger на [http://localhost:8081/swagger-ui/](http://localhost:8081/swagger-ui/)
+Swagger на [http://localhost:8080/swagger-ui/](http://localhost:8080/swagger-ui/)
+
+По ссылке [http://localhost:8080/server-info?environmentVariable=HOSTNAME](http://localhost:8080/server-info?environmentVariable=HOSTNAME)
+можно проверить системные переменные контейнера, в данном примере получаем HOSTNAME, который будет возвращаться с каждого контейнера разный
