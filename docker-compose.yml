@@ -9,8 +9,6 @@ services:
         - SPRING_PROFILE=dev-docker
     deploy:
       replicas: 2
-#    environment:
-#      - HOST=web1
 
   db:
     image: postgres:14.5
@@ -26,6 +24,7 @@ services:
   consumer:
     depends_on:
       - rabbitmq
+      - redis
     build: C:\Users\mrmis\PycharmProjects\python-mq-consumer
     restart: on-failure
     env_file:
@@ -45,10 +44,20 @@ services:
       retries: 3
 
   nginx:
+    hostname: $APP_HOSTNAME
     build: nginx/.
     ports:
       - "8080:80"
     depends_on:
       - web
+    env_file:
+      - ".env"
+
+  redis:
+    hostname: $CACHE_HOST
+    image: redis
+    env_file:
+      - ".env"
+
 volumes:
   pgdata:
